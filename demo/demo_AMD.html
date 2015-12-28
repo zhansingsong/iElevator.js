@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>evelator Demo</title>
+    <style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    
+    li {
+        list-style: none;
+    }
+    
+    a {
+        text-decoration: none;
+        outline: none;
+        color: black;
+    }
+    
+    a:active {
+        outline: 0;
+    }
+    
+    .demo {
+        margin: 0 auto;
+        width: 1000px;
+    }
+    
+    .header {
+        height: 400px;
+        background: #03A9F4;
+    }
+    
+    .floor1 {
+        height: 400px;
+        background: bisque;
+    }
+    
+    .floor2 {
+        height: 300px;
+        background: blueviolet;
+    }
+    
+    .floor3 {
+        height: 500px;
+        background: green;
+    }
+    
+    .floor4 {
+        height: 400px;
+        background: red;
+    }
+    
+    .floor5 {
+        height: 200px;
+        background: pink;
+    }
+    
+    .floor6 {
+        height: 400px;
+        background: #FF5722;
+    }
+    
+    .floor7 {
+        height: 600px;
+        background: #00BCD4;
+    }
+    
+    .footer {
+        height: 600px;
+    }
+    
+    .elevator {
+        position: fixed;
+        _position: absolute;
+        top: 100px;
+        left: 50%;
+        text-align: center;
+        margin-left: 520px;
+        background: #CDDC39;
+    }
+    
+    .elevator ul li {
+        margin-bottom: 2px;
+    }
+    
+    .elevator ul li a {
+        display: block;
+        height: 40px;
+        line-height: 40px;
+        width: 60px;
+        background: #4CAF50;
+        border: 2px solid #CDDC39;
+    }
+    
+    .elevator ul li a:hover {
+        background: #FF5722;
+    }
+    
+    .elevator .selected {
+        background: #FF5722;
+    }
+    
+    .elevator .custome-selected {
+        background: #FF5722;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="demo">
+        <div class="header">
+            <h1>Header</h1>
+        </div>
+        <div class="floor1 js-floor">
+            <h1>Floor1</h1>
+        </div>
+        <div class="floor2 js-floor">
+            <h1>Floor2</h1>
+        </div>
+        <div class="floor3 js-floor">
+            <h1>Floor3</h1>
+        </div>
+        <div class="floor4 js-floor">
+            <h1>Floor4</h1>
+        </div>
+        <div class="floor5 js-floor">
+            <h1>Floor5</h1>
+        </div>
+        <div class="floor6 js-floor">
+            <h1>Floor6</h1>
+        </div>
+        <div class="floor7 js-floor">
+            <h1>Floor7</h1>
+        </div>
+        <div class="footer">
+            <h1>Footer</h1>
+        </div>
+    </div>
+    <div class="elevator" id="elevator" data-iElevator-options=''>
+        <ul>
+            <li><a href="javascript:;" class="js-btn">floor1</a></li>
+            <li><a href="javascript:;" class="js-btn">floor2</a></li>
+            <li><a href="javascript:;" class="js-btn">floor3</a></li>
+            <li><a href="javascript:;" class="js-btn">floor4</a></li>
+            <li><a href="javascript:;" class="js-btn">floor5</a></li>
+            <li><a href="javascript:;" class="js-btn">floor6</a></li>
+            <li><a href="javascript:;" class="js-btn">floor7</a></li>
+            <li><a href="javascript:;" class="js-backtop">TOP</a></li>
+        </ul>
+    </div>
+    <script data-main="main" src="js/require.js"></script>
+</body>
+
+</html>

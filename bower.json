@@ -1,0 +1,27 @@
+{
+  "name": "ielevator",
+  "description": "ielevator is quite useful for simulating elevator.",
+  "main": "jquery.iElevator.js",
+  "authors": [
+    "zhansingsong"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "ielevator",
+    "jquery",
+    "ecosystem:jquery",
+    "plugin",
+    "backtoup",
+    "elevator",
+    "jquery"
+  ],
+  "moduleType": [],
+  "homepage": "https://github.com/zhansingsong/iElevator.js.git",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
