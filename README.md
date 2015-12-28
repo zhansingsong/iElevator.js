@@ -12,7 +12,7 @@ this is a jQuery plugin for elevator, lightweight, easy to use and with some ext
 this is a **jQuery** plugin, So jQuery is required,
 
 ### configuration
-In order to make the plugin work normally, you provide at least one of `“cBacktop”` , `"cFloors + cBtns"` or `"cFloors + cBtns + cBacktop"`
+In order to ensure the plugin work normally, you provide at least one of `“cBacktop”` , `"cFloors + cBtns"` or `"cFloors + cBtns + cBacktop"`
 ### Default Options
 ```javascript
 _defaults = {
@@ -65,7 +65,7 @@ _defaults = {
 ##### 'visible' option
 - control **elevator** visibility, and contain isHide, numShow properties
 - isHide: `yes`|`no`. 
-if yes, elevator is visible on initialization, and vice versa. ++***NOTE:*** if no,however set any value to numShow, numShow doesn't make sense.++
+if yes, elevator is visible on initialization, and vice versa. ***NOTE:*** if no,however set any value to numShow, numShow doesn't make sense.
 - numShow:`Number`. 
 when scrollTop is greater than number, elevator will be visible. and vice versa
 ```javascript
@@ -99,7 +99,7 @@ hide: function (me) {
 ```
 
 ## Usage
-it is easy to use, only you ovrride default options to meet your requirements what you want. the following three example to dispaly the plugin how to use.
+it is easy to use, only you ovrride default options to meet your requirements what you want. the following three example to illustrate the plugin how to use.
 #### 1. back to top
 ##### **[Refer to expample](http://zhansingsong.github.io/back2top)**
 HTML structure:
