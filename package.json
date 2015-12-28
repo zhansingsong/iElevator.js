@@ -11,12 +11,13 @@
     "url": "git@github.com:zhansingsong/iElevator.js.git"
   },
   "keywords": [
+    "elevator",
     "ielevator",
-    "jquery",
+    "lift",
+    "backtoup",
+    "jquery-plugin",
     "ecosystem:jquery",
     "plugin",
-    "backtoup",
-    "elevator",
     "jquery"
   ],
   "author": "zhansingsong",
