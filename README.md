@@ -104,7 +104,7 @@ hide: function (me) {
 ## Usage
 it is easy to use, only you ovrride default options to meet your requirements what you want. the following three example to illustrate the plugin how to use.
 #### 1. back to top
-##### **[Refer to expample](http://zhansingsong.github.io/back2top)**
+#####-------------------------------------------------> **[Refer to expample](http://zhansingsong.github.io/back2top)**
 HTML structure:
 ```javascript
     <div class="elevator elevator-backtop" id="backtop" >
