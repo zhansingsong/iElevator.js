@@ -104,7 +104,7 @@ hide: function (me) {
 ## Usage
 it is easy to use, only you ovrride default options to meet your requirements what you want. the following three example to illustrate the plugin how to use.
 #### 1. back to top
-#####----------------------------------------------------------------- **[Refer to expample](http://zhansingsong.github.io/back2top)**
+#####-------------------------------------------------------------------------------**[Refer to expample](http://zhansingsong.github.io/back2top)**
 HTML structure:
 ```javascript
     <div class="elevator elevator-backtop" id="backtop" >
@@ -120,7 +120,7 @@ Javascript:
 the example is very easy, only to get the "back to top" reference, and then [back to top] works
 
 #### 2. simulate elelvator
-##### -----------------------------------------------------------------**[Refer to expample](http://zhansingsong.github.io/iElevator)**
+#####-------------------------------------------------------------------------------**[Refer to expample](http://zhansingsong.github.io/iElevator)**
 HTML structure:  
 
 ```javascript
@@ -153,7 +153,7 @@ Javascript:
 ```
 ##### <font color=#d22> NOTE: **`data-ielevator-options='{"selected": "custome-selected"}'`** is the highest priority. therefore, `'custome-selected'` will overwrite `'selected' in configuration object` </font>
 #### 3. simulate elevator + back to top
-##### -----------------------------------------------------------------**[Refer to expample](http://zhansingsong.github.io/iElevator-back2top)**
+#####-------------------------------------------------------------------------------**[Refer to expample](http://zhansingsong.github.io/iElevator-back2top)**
 HTML structure:
 ```javascript
     <div class="elevator" id="elevator" data-elevator-options=''>
