@@ -3,7 +3,8 @@
 [![Bower version](https://badge.fury.io/bo/ielevator.svg)](https://badge.fury.io/bo/ielevator)
 
 this is a jQuery plugin for elevator, lightweight, easy to use and with some extra features
-
+## install
+`npm install ielevator` or `bower install ielevator`
 ## Features
 - **UMD** support(AMD, CMD, Globals)
 - Flexible HTML structure
