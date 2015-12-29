@@ -1,6 +1,6 @@
 # iElevator.js
 [![npm version](https://badge.fury.io/js/ielevator.svg)](https://badge.fury.io/js/ielevator)
-
+[![Bower version](https://badge.fury.io/bo/ielevator.svg)](https://badge.fury.io/bo/ielevator)
 this is a jQuery plugin for elevator, lightweight, easy to use and with some extra features
 
 ## Features
