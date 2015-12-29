@@ -192,6 +192,39 @@ Javascript:
 ##### [demoAMD](http://zhansingsong.github.io/demoAMD)
 
 
+* * * *
+## 中文
+#####[iElevator.js](https://github.com/zhansingsong/iElevator.js)是一个jquery小插件，使用简单，兼容IE6，支持UMD和3种配置方式，比锚点更灵活。
+* * *
+#####Default Options
+```javascript
+_defaults = {
+    floors: null,
+    btns: null,
+    backtop: null,
+    selected: '',
+    visible: {isHide: 'no', numShow: 0},
+    speed: 400,
+    show: function (me) {
+        me.element.show();
+    },
+    hide: function (me) {
+        me.element.hide();
+    }
+  }
+```
+- `floors`:用于获取页面中对于floor模块的引用
+- `btns`: 获取焦点图引用
+- `backtop`: 获取回到顶部按钮的引用
+- `selected`: 用于焦点图在进行滚动或单击时，选中样式
+- `visible`: 用于控制【电梯】是显示与隐藏，当srollTop值大于`numShow`是就显示，小于就隐藏
+- `speed`: 控制滑条的滚动速度
+- `show`: 可以重新该函数，来定制`elevator`的显示方式
+- `hide`: 可以重新该函数，来定制`elevator`的隐藏方式
+
+## 安装
+`npm install ielevator` or `bower install ielevator`
+
 
 ## License
 iElevator.js is covered by the **MIT** License.
