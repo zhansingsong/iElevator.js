@@ -187,7 +187,7 @@ Javascript:
     });
 ```
 #### 4. require.js example
-##### [demo_AMD](http://zhansingsong.github.io/demo_AMD)
+##### [demoAMD](http://zhansingsong.github.io/demoAMD)
 
 
 
