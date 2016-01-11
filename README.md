@@ -204,6 +204,28 @@ Javascript:
 #### 4. require.js example
 ##### [demoAMD](http://zhansingsong.github.io/demoAMD)
 
+#### 5. 模拟segmentfault文章导航
+Javascript:
+```javascript
+    // 获取Markdown中的标题
+    var $demo = $('#demo'),
+        $titles = $('h2'),
+        $nav = $demo.find('.list'),
+        $highlight = $demo.find('.highlight'),
+        STR = '';
+    // 填充标题
+    $titles.each(function(){
+        STR += '<li><a>'+ $(this).text() +'</a></li>';
+    });
+    $nav.html(STR);
+    // 调用ielevator
+    $demo.ielevator({
+        floors: $titles,
+        btns: $('#demo li'),
+        sticky: 10,
+        selected: $highlight
+    });
+```
 
 * * * *
 ## 中文
