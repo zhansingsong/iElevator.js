@@ -1,7 +1,7 @@
 require.config({　　
     paths: {　　　　
         "jquery": "js/jquery-1.8.2",
-        "ielevator": "iElevator"　　
+        "ielevator": "../iElevator"　　
     }
 });
 require(["ielevator"], function() {

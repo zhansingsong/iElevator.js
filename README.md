@@ -21,20 +21,25 @@ this is a **jQuery** plugin, So jQuery is required,
 In order to ensure the plugin work normally, you provide at least one of `“cBacktop”` , `"cFloors + cBtns"` or `"cFloors + cBtns + cBacktop"`
 ### Default Options
 ```javascript
+    
 _defaults = {
     floors: null,
     btns: null,
     backtop: null,
     selected: '',
-    visible: {isHide: 'no', numShow: 0},
-    speed: 400,
-    show: function (me) {
-    	me.element.show();
+    sticky: -1,
+    visible: {
+        isHide: 'no',
+        numShow: 0
     },
-    hide: function (me) {
-    	me.element.hide();
+    speed: 400,
+    show: function(me) {
+        me.element.show();
+    },
+    hide: function(me) {
+        me.element.hide();
     }
-  }
+}
 ```
 ##### 'floors' option
 - (selector)select all elements with the given class, each represents a floor module. the default is null.
@@ -61,13 +66,21 @@ _defaults = {
 ```
 
 ##### 'selected' option
-- (css)selected refers to style of **[btns option]** selected or hover,
+- (css)selected refers to style of **[btns option]** selected or hover, or (selector) represents simulate selected object
 ```javascript
 	$('#elevator').({
-		selected: '',
+		selected: ''
+        // selected: $('hightlight')
   });
 ```
 
+##### 'sticky' option
+- (number)sticky emulates 'sticky position', is a Number type(default -1) and represents margin from  top of elevator to top of viewport . 
+```javascript
+    $('#elevator').({
+        sticky: 100
+  });
+```
 ##### 'visible' option
 - control **elevator** visibility, and contain isHide, numShow properties
 - isHide: `yes`|`no`. 

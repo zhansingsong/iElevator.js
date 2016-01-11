@@ -42,6 +42,7 @@
                 btns: null,
                 backtop: null,
                 selected: '',
+                sticky: -1,
                 visible: {
                     isHide: 'no',
                     numShow: 0
@@ -76,6 +77,7 @@
                     _numShow = _parent.numShow;
                 if (_isHide === 'yes') {
                     this.element.hide();
+                    this.numShow = _numShow;
                 } else {
                     _numShow = 0;
                 }
@@ -87,16 +89,22 @@
                     }
                 }
             },
-            _supportIE6 = (function() {
-                if (IETest(6)) {
-                    // Anti-shake
-                    $('html').css({
-                        "backgroundImage": "url(about:blank)",
-                        "backgroundAttachment": "fixed"
-                    });
-                    return function(_sTop, _currentTop) {
-                        this.element.css('top', parseInt(_sTop, 10) + _currentTop + 'px');
+            _supportIE6 = (function () {
+                if(IETest(6)){
+                  // Anti-shake
+                  $('html').css({
+                    "backgroundImage": "url(about:blank)",
+                    "backgroundAttachment": "fixed"
+                  });
+                  return function (_sTop, _currentTop) {
+                    if(this.element[0].currentStyle.position === 'fixed'){
+                      this.element.css('position', 'absolute');
                     }
+                    this.element.css('top', parseInt(_sTop, 10)  + _currentTop + 'px');
+                    _supportIE6 = function (_sTop, _currentTop) {
+                        this.element.css('top', parseInt(_sTop, 10)  + _currentTop + 'px');
+                    }
+                  }
                 }
             })();
 
@@ -110,7 +118,7 @@
             if (_patternFields.floors) {
                 this.floors = _getSettings.call(this, 'floors');
                 this.floors.each(function() {
-                    _scrollTopArr.push($(this).offset().top);
+                    _scrollTopArr.push($(this).offset().top | 0);
                 });
                 this.btns = _patternFields.btns ? _getSettings.call(this, 'btns') : null;
             }
@@ -130,13 +138,47 @@
                 _refArr = this.backtop;
             }
 
-
             _STARR = _scrollTopArr.slice();
             _STARR.push(0);
 
             // support 3 patterns
             if (!(_patternFields.floors && _patternFields.btns && _patternFields.backtop) && !(_patternFields.floors && _patternFields.btns) && !(_patternFields.backtop)) {
                 $.error('you provide at least one of "cBacktop" , "cFloors + cBtns" or "cFloors + cBtns + cBacktop"')
+            }
+        }
+        // automatically load css script
+        function _loadStyleString(css) {
+            var _style = document.createElement('style'),
+                _head = document.getElementsByTagName('head')[0];
+            _style.type = 'text/css';
+            try{
+                _style.appendChild(document.createTextNode(css));
+            } catch (ex) {
+                // lower IE support, if you want to know more about this to see http://www.quirksmode.org/dom/w3c_css.html
+                _style.styleSheet.cssText = css;
+            }
+            _head.appendChild(_style);
+            return _style;
+        }
+        // sticky position
+        var _setSticky = function(_sTop) {
+            var _fixedTop = +_getSettings.call(this, 'sticky'),
+                _currentTop = this.element.offset().top,
+                _CSSSTR = '.fixed{position: fixed; top: ' + _fixedTop + 'px;}';
+            if (_fixedTop < 0) return;
+            _loadStyleString(_CSSSTR);
+            if (_sTop - _fixedTop > _currentTop) {
+                this.element.addClass('fixed');
+            } else {
+                this.element.removeClass('fixed');
+            }
+
+            _setSticky = function(_sTop) {
+                if (_sTop + _fixedTop > _currentTop) {
+                    this.element.addClass('fixed');
+                } else {
+                    this.element.removeClass('fixed');
+                }
             }
         }
 
@@ -197,11 +239,30 @@
             // this.btns && this.btns.removeClass(_selected).eq(index).addClass(_selected);
             _refArr && _refArr.removeClass(_selected).eq(index).addClass(_selected);
         }
+        // update functionality from _setBtns to _setSelected
+        function _setSelected(index) {
+            // _selected : [String] represents a class name; $selected: [jQuery Object] represents a jQuery Object
+            var _temp = _getSettings.call(this, 'selected'),
+                _selected, 
+                $selected;
+                
+            if(!_temp) return;
+            typeof _temp === 'string' ? _selected =  _temp : $selected = _temp;
+            _selected && _refArr && _refArr.removeClass(_selected).eq(index).addClass(_selected);
+            
+            if ($selected) {
+                var _top = _refArr.eq(index).position().top,
+                    _height = _refArr.eq(index).height();
+                if(index < 0) return;
+                // $selected.animate({'top': _top + 'px'}); //there is costly network latency, suggest using CSS3 transition to implement
+                $selected.css({'top': _top + 'px', 'height': _height + 'px'});
+            }
+        }
 
         function _bindEvents() {
             var _me = this,
                 _speed = _getSettings.call(this, 'speed'),
-                _currentTop = this.element.offset().top,
+                // _currentTop = this.element.offset().top,
                 _len = _STARR.length;
             _refArr.on('click.' + this.namespace, function(e) {
                 var _index = _refArr.index($(this));
@@ -211,9 +272,10 @@
             $(window).on('scroll.' + this.namespace, function() {
                 var _sTop = $(this).scrollTop();
                 var _index = _getLocation.call(_me, _sTop);
-                _supportIE6 && _supportIE6.call(_me, _sTop, _currentTop);
+                _supportIE6 && _supportIE6.call(_me, _sTop, _me.numShow);
                 _visible.call(_me, _sTop);
-                _setBtns.call(_me, _index);
+                _setSelected.call(_me, _index);
+                _setSticky.call(_me, _sTop);
             });
         }
 
