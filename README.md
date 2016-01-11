@@ -18,7 +18,7 @@ this is a jQuery plugin for elevator, lightweight, easy to use and with some ext
 this is a **jQuery** plugin, So jQuery is required,
 
 ### configuration
-In order to ensure the plugin work normally, you provide at least one of `“cBacktop”` , `"cFloors + cBtns"` or `"cFloors + cBtns + cBacktop"`
+In order to ensure the plugin work normally, you provide at least one of `“backtop”` , `"floors + btns"` or `"floors + btns + backtop"`
 ### Default Options
 ```javascript
     
