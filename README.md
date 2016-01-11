@@ -58,7 +58,7 @@ _defaults = {
 ```
 
 ##### 'backtop' option
-- (selector)select all elements with the given class, each represents back-to-top button. thed default is null.
+- (selector)select all elements with the given class, each represents back-to-top button. the default is null.
 ```javascript
 	$('#elevator').({
   	floors: $('js-backtop')
@@ -75,7 +75,7 @@ _defaults = {
 ```
 
 ##### 'sticky' option
-- (number)sticky emulates 'sticky position', is a Number type(default -1) and represents margin from  top of elevator to top of viewport . 
+- (number)sticky emulates `'sticky position'`, is a Number type(the default is -1) and represents margin from top of elevator to top of viewport . 
 ```javascript
     $('#elevator').({
         sticky: 100
