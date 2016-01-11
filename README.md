@@ -253,8 +253,8 @@ _defaults = {
 - `floors`:用于获取页面中对于floor模块的引用
 - `btns`: 获取焦点图引用
 - `backtop`: 获取回到顶部按钮的引用
-- `selected`: 当焦点图在进行滚动或单击时，表示选中的样式或模拟选中的元素。
-- `sticky`: 模拟`position: sticky`定位，并可以指定elevator顶部距离窗口顶部的距离，默认为-1.
+- `selected`: 当焦点图在进行滚动或单击时，表示选中的样式或模拟选中的元素
+- `sticky`: 模拟`position: sticky`定位，并可以指定elevator顶部距离窗口顶部的距离，默认为-1
 - `visible`: 用于控制【电梯】是显示与隐藏，当srollTop值大于`numShow`是就显示，小于就隐藏
 - `speed`: 控制滑条的滚动速度
 - `show`: 可以重新该函数，来定制`elevator`的显示方式
