@@ -53,7 +53,7 @@ _defaults = {
 - (selector)select all elements with the given class, each represents a focus button. the default is null.
 ```javascript
 	$('#elevator').({
-  	floors: $('js-btn')
+  	btns: $('js-btn')
   });
 ```
 
@@ -61,7 +61,7 @@ _defaults = {
 - (selector)select all elements with the given class, each represents back-to-top button. the default is null.
 ```javascript
 	$('#elevator').({
-  	floors: $('js-backtop')
+  	backtop: $('js-backtop')
   });
 ```
 
