@@ -46,7 +46,7 @@ _defaults = {
 ```javascript
 	$('#elevator').({
   	floors: $('js-floor')
-  });
+    });
 ```
 
 ##### 'btns' option
@@ -54,7 +54,7 @@ _defaults = {
 ```javascript
 	$('#elevator').({
   	btns: $('js-btn')
-  });
+    });
 ```
 
 ##### 'backtop' option
@@ -62,7 +62,7 @@ _defaults = {
 ```javascript
 	$('#elevator').({
   	backtop: $('js-backtop')
-  });
+    });
 ```
 
 ##### 'selected' option
@@ -71,7 +71,7 @@ _defaults = {
 	$('#elevator').({
 		selected: ''
         // selected: $('hightlight')
-  });
+    });
 ```
 
 ##### 'sticky' option
@@ -79,7 +79,7 @@ _defaults = {
 ```javascript
     $('#elevator').({
         sticky: 100
-  });
+    });
 ```
 ##### 'visible' option
 - control **elevator** visibility, and contain isHide, numShow properties
@@ -90,7 +90,7 @@ when scrollTop is greater than number, elevator will be visible. and vice versa
 ```javascript
 	$('#elevator').({
     visible: {isHide: 'no', numShow: 0}
-  });
+    });
 ```
 
 ##### 'speed' option
@@ -98,7 +98,7 @@ when scrollTop is greater than number, elevator will be visible. and vice versa
 ```javascript
 	$('#elevator').({
  		speed: 400
-  });
+    });
 ```
 
 ##### 'show' option
@@ -120,7 +120,7 @@ hide: function (me) {
 ## Usage
 it is easy to use, only you ovrride default options to meet your requirements what you want. the following four examples to illustrate the plugin how to use.
 #### 1. back to top
-#####-------------------------------------------------------------------------------**[expample](http://zhansingsong.github.io/back2top)**
+#####-------------------------------------------------------------------------------**[example](http://zhansingsong.github.io/back2top)**
 HTML structure:
 ```javascript
     <div class="elevator elevator-backtop" id="backtop" >
@@ -136,7 +136,7 @@ Javascript:
 the example is very easy, only to get the "back to top" reference, and then [back to top] works
 
 #### 2. simulate elelvator
-#####-------------------------------------------------------------------------------**[expample](http://zhansingsong.github.io/iElevator)**
+#####-------------------------------------------------------------------------------**[example](http://zhansingsong.github.io/iElevator)**
 HTML structure:  
 
 ```javascript
@@ -169,7 +169,7 @@ Javascript:
 ```
 ##### <font color=#d22> NOTE: **`data-ielevator-options='{"selected": "custome-selected"}'`** is the highest priority. therefore, `'custome-selected'` will overwrite `'selected' in configuration object` </font>
 #### 3. simulate elevator + back to top
-#####-------------------------------------------------------------------------------**[expample](http://zhansingsong.github.io/iElevator-back2top)**
+#####-------------------------------------------------------------------------------**[example](http://zhansingsong.github.io/iElevator-back2top)**
 HTML structure:
 ```javascript
     <div class="elevator" id="elevator" data-elevator-options=''>
@@ -205,7 +205,7 @@ Javascript:
 ##### [demoAMD](http://zhansingsong.github.io/demoAMD)
 
 #### 5. 模拟segmentfault文章导航
-#####-------------------------------------------------------------------------------**[expample](http://zhansingsong.github.io/segmentfault)**
+#####-------------------------------------------------------------------------------**[example](http://zhansingsong.github.io/segmentfault)**
 Javascript:
 ```javascript
     // 获取Markdown中的标题
