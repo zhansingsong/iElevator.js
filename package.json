@@ -1,6 +1,6 @@
 {
   "name": "ielevator",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "ielevator is quite useful for simulating elevator.",
   "main": "jquery.iElevator.js",
   "scripts": {
