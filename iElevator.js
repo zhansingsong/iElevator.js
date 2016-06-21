@@ -303,7 +303,6 @@
                 this._(_init)(options);
             },
             destory: function() {
-                console.log('destory');
                 this._(_destory)();
             },
             getSettings: function(key) {
@@ -354,7 +353,7 @@
 
                 var pluginInstance = $.data(this, PLUGIN_NS);
                 if (pluginInstance) {
-                    pluginInstance.option(options);
+                    pluginInstance.init(options);
                 } else {
                     $.data(this, PLUGIN_NS, new iElevator(options, this));
                 }
