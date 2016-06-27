@@ -3,8 +3,8 @@
 [![Bower version](https://badge.fury.io/bo/ielevator.svg)](https://badge.fury.io/bo/ielevator)
 [![GitHub version](https://badge.fury.io/gh/zhansingsong%2FiElevator.js.svg)](https://badge.fury.io/gh/zhansingsong%2FiElevator.js)
 
-
 this is a jQuery plugin for elevator, lightweight, easy to use and with some extra features
+![demo](demo.gif)
 ## install
 `npm install ielevator` or `bower install ielevator`
 ## Features
