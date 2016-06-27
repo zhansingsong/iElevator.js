@@ -245,15 +245,15 @@ _defaults = {
     }
   }
 ```
-- `floors`:用于获取页面中对于floor模块的引用
-- `btns`: 获取焦点图引用
-- `backtop`: 获取回到顶部按钮的引用
-- `selected`: 当焦点图在进行滚动或单击时，表示选中的样式或模拟选中的元素
+- `floors`:页面中floor模块的引用
+- `btns`: 焦点图的引用
+- `backtop`: 回到顶部按钮的引用
+- `selected`: 焦点图在进行滚动或单击时的选中样式
 - `sticky`: 模拟`position: sticky`定位，并可以指定elevator顶部距离窗口顶部的距离，默认为-1
-- `visible`: 用于控制【电梯】是显示与隐藏，当srollTop值大于`numShow`是就显示，小于就隐藏
+- `visible`: 用于控制【电梯】的显示与隐藏，当srollTop值大于`numShow`时，显示【电梯】，反之则隐藏
 - `speed`: 控制滑条的滚动速度
-- `show`: 可以重新该函数，来定制`elevator`的显示方式
-- `hide`: 可以重新该函数，来定制`elevator`的隐藏方式
+- `show`: 可以重写该函数，来定制`elevator`的显示方式
+- `hide`: 可以重写该函数，来定制`elevator`的隐藏方式
 
 ## 安装
 `npm install ielevator` or `bower install ielevator`
