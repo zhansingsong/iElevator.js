@@ -257,7 +257,8 @@ _defaults = {
 
 ## 安装
 `npm install ielevator` or `bower install ielevator`
-
+## changelog
+- 1.2.0: 增加throttle，对scroll事件进行节流优化，修复sticky|visible
 
 ## License
 iElevator.js is covered by the **MIT** License.

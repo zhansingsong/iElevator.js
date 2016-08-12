@@ -10,6 +10,46 @@
     }
 }(this, function($) {
     'use strict';
+    // underscroe.js throttle
+    function throttle(func, wait, options) {
+        var timeout, context, args, result;
+        var previous = 0;
+        if (!options) options = {};
+
+        var later = function() {
+          previous = options.leading === false ? 0 : Number(new Date());
+          timeout = null;
+          result = func.apply(context, args);
+          if (!timeout) context = args = null;
+        };
+
+        var throttled = function() {
+          var now = Number(new Date());
+          if (!previous && options.leading === false) previous = now;
+          var remaining = wait - (now - previous);
+          context = this;
+          args = arguments;
+          if (remaining <= 0 || remaining > wait) {
+            if (timeout) {
+              clearTimeout(timeout);
+              timeout = null;
+            }
+            previous = now;
+            result = func.apply(context, args);
+            if (!timeout) context = args = null;
+          } else if (!timeout && options.trailing !== false) {
+            timeout = setTimeout(later, remaining);
+          }
+          return result;
+        };
+
+        throttled.cancel = function() {
+          clearTimeout(timeout);
+          previous = 0;
+          timeout = context = args = null;
+        };
+        return throttled;
+    }
     // IE6 support
     if (typeof Array.prototype.indexOf !== 'function') {
         Array.prototype.indexOf = function(item) {
@@ -74,12 +114,15 @@
         var _visible = function(_sTop) {
                 var _parent = _getSettings.call(this, 'visible'),
                     _isHide = _parent.isHide.toLowerCase(),
-                    _numShow = _parent.numShow;
+                    _winSTop = $(window).scrollTop(),
+                    _numShow = _parent.numShow || 0;
+
                 if (_isHide === 'yes') {
-                    this.element.hide();
-                    this.numShow = _numShow;
-                } else {
-                    _numShow = 0;
+                   if(_winSTop < _numShow) {
+                      _ielevatorHide.call(this);
+                   } else {
+                     _ielevatorShow.call(this);
+                   }
                 }
                 _visible = function(_sTop) {
                     if (_sTop >= _numShow) {
@@ -164,10 +207,11 @@
         var _setSticky = function(_sTop) {
             var _fixedTop = +_getSettings.call(this, 'sticky'),
                 _currentTop = this.element.offset().top,
+                _winSTop = $(window).scrollTop(),
                 _CSSSTR = '.fixed{position: fixed; top: ' + _fixedTop + 'px;}';
             if (_fixedTop < 0) return;
             _loadStyleString(_CSSSTR);
-            if (_sTop - _fixedTop > _currentTop) {
+            if (_winSTop - _fixedTop > _currentTop) {
                 this.element.addClass('fixed');
             } else {
                 this.element.removeClass('fixed');
@@ -269,14 +313,14 @@
                 _setLocation.call(_me, _index, _speed);
             });
 
-            $(window).on('scroll.' + this.namespace, function() {
+            $(window).on('scroll.' + this.namespace, throttle(function() {
                 var _sTop = $(this).scrollTop();
                 var _index = _getLocation.call(_me, _sTop);
                 _supportIE6 && _supportIE6.call(_me, _sTop, _me.numShow);
                 _visible.call(_me, _sTop);
                 _setSelected.call(_me, _index);
                 _setSticky.call(_me, _sTop);
-            });
+            }, 200));
         }
 
         function _unbindEvents() {
