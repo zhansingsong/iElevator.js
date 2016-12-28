@@ -17,36 +17,36 @@
         if (!options) options = {};
 
         var later = function() {
-          previous = options.leading === false ? 0 : Number(new Date());
-          timeout = null;
-          result = func.apply(context, args);
-          if (!timeout) context = args = null;
+            previous = options.leading === false ? 0 : Number(new Date());
+            timeout = null;
+            result = func.apply(context, args);
+            if (!timeout) context = args = null;
         };
 
         var throttled = function() {
-          var now = Number(new Date());
-          if (!previous && options.leading === false) previous = now;
-          var remaining = wait - (now - previous);
-          context = this;
-          args = arguments;
-          if (remaining <= 0 || remaining > wait) {
-            if (timeout) {
-              clearTimeout(timeout);
-              timeout = null;
+            var now = Number(new Date());
+            if (!previous && options.leading === false) previous = now;
+            var remaining = wait - (now - previous);
+            context = this;
+            args = arguments;
+            if (remaining <= 0 || remaining > wait) {
+                if (timeout) {
+                    clearTimeout(timeout);
+                    timeout = null;
+                }
+                previous = now;
+                result = func.apply(context, args);
+                if (!timeout) context = args = null;
+            } else if (!timeout && options.trailing !== false) {
+                timeout = setTimeout(later, remaining);
             }
-            previous = now;
-            result = func.apply(context, args);
-            if (!timeout) context = args = null;
-          } else if (!timeout && options.trailing !== false) {
-            timeout = setTimeout(later, remaining);
-          }
-          return result;
+            return result;
         };
 
         throttled.cancel = function() {
-          clearTimeout(timeout);
-          previous = 0;
-          timeout = context = args = null;
+            clearTimeout(timeout);
+            previous = 0;
+            timeout = context = args = null;
         };
         return throttled;
     }
@@ -118,11 +118,11 @@
                     _numShow = _parent.numShow || 0;
 
                 if (_isHide === 'yes') {
-                   if(_winSTop < _numShow) {
-                      _ielevatorHide.call(this);
-                   } else {
-                     _ielevatorShow.call(this);
-                   }
+                    if (_winSTop < _numShow) {
+                        _ielevatorHide.call(this);
+                    } else {
+                        _ielevatorShow.call(this);
+                    }
                 }
                 _visible = function(_sTop) {
                     if (_sTop >= _numShow) {
@@ -132,22 +132,22 @@
                     }
                 }
             },
-            _supportIE6 = (function () {
-                if(IETest(6)){
-                  // Anti-shake
-                  $('html').css({
-                    "backgroundImage": "url(about:blank)",
-                    "backgroundAttachment": "fixed"
-                  });
-                  return function (_sTop, _currentTop) {
-                    if(this.element[0].currentStyle.position === 'fixed'){
-                      this.element.css('position', 'absolute');
+            _supportIE6 = (function() {
+                if (IETest(6)) {
+                    // Anti-shake
+                    $('html').css({
+                        "backgroundImage": "url(about:blank)",
+                        "backgroundAttachment": "fixed"
+                    });
+                    return function(_sTop, _currentTop) {
+                        if (this.element[0].currentStyle.position === 'fixed') {
+                            this.element.css('position', 'absolute');
+                        }
+                        this.element.css('top', parseInt(_sTop, 10) + _currentTop + 'px');
+                        _supportIE6 = function(_sTop, _currentTop) {
+                            this.element.css('top', parseInt(_sTop, 10) + _currentTop + 'px');
+                        }
                     }
-                    this.element.css('top', parseInt(_sTop, 10)  + _currentTop + 'px');
-                    _supportIE6 = function (_sTop, _currentTop) {
-                        this.element.css('top', parseInt(_sTop, 10)  + _currentTop + 'px');
-                    }
-                  }
                 }
             })();
 
@@ -194,7 +194,7 @@
             var _style = document.createElement('style'),
                 _head = document.getElementsByTagName('head')[0];
             _style.type = 'text/css';
-            try{
+            try {
                 _style.appendChild(document.createTextNode(css));
             } catch (ex) {
                 // lower IE support, if you want to know more about this to see http://www.quirksmode.org/dom/w3c_css.html
@@ -285,22 +285,32 @@
         }
         // update functionality from _setBtns to _setSelected
         function _setSelected(index) {
+            if (index === -1) return; // 过滤掉返回顶部
             // _selected : [String] represents a class name; $selected: [jQuery Object] represents a jQuery Object
             var _temp = _getSettings.call(this, 'selected'),
-                _selected, 
+                _selected,
                 $selected;
-                
-            if(!_temp) return;
-            typeof _temp === 'string' ? _selected =  _temp : $selected = _temp;
+
+            if (!_temp) return;
+            typeof _temp === 'string' ? _selected = _temp : $selected = _temp;
             _selected && _refArr && _refArr.removeClass(_selected).eq(index).addClass(_selected);
-            
+
             if ($selected) {
                 var _top = _refArr.eq(index).position().top,
                     _height = _refArr.eq(index).height();
-                if(index < 0) return;
+                if (index < 0) return;
                 // $selected.animate({'top': _top + 'px'}); //there is costly network latency, suggest using CSS3 transition to implement
-                $selected.css({'top': _top + 'px', 'height': _height + 'px'});
+                $selected.css({ 'top': _top + 'px', 'height': _height + 'px' });
             }
+        }
+
+        function _scrollCB() {
+            var _sTop = $(window).scrollTop();
+            var _index = _getLocation.call(this, _sTop);
+            _supportIE6 && _supportIE6.call(this, _sTop, this.numShow);
+            _visible.call(this, _sTop);
+            _setSelected.call(this, _index);
+            _setSticky.call(this, _sTop);
         }
 
         function _bindEvents() {
@@ -313,14 +323,7 @@
                 _setLocation.call(_me, _index, _speed);
             });
 
-            $(window).on('scroll.' + this.namespace, throttle(function() {
-                var _sTop = $(this).scrollTop();
-                var _index = _getLocation.call(_me, _sTop);
-                _supportIE6 && _supportIE6.call(_me, _sTop, _me.numShow);
-                _visible.call(_me, _sTop);
-                _setSelected.call(_me, _index);
-                _setSticky.call(_me, _sTop);
-            }, 200));
+            $(window).on('scroll.' + this.namespace, throttle($.proxy(_scrollCB, _me), 200));
         }
 
         function _unbindEvents() {
@@ -336,7 +339,8 @@
 
         function _init(options) {
             _initPattern.call(this, options);
-            _visible.call(this);
+            // _visible.call(this);
+            _scrollCB.call(this);
             _bindEvents.call(this);
         }
 
